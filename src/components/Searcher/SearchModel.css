@@ -1,0 +1,13 @@
+.input-model{
+padding: 5px;
+margin-right: 5px;
+border-radius: 10px;
+width: 300px;
+}
+.btn-submit{
+    padding: 5px;
+    background-color:chartreuse;
+    width: 100px;
+    border-radius: 10px;
+    height: 32px;
+}
