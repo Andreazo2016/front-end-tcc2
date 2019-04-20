@@ -1,8 +1,12 @@
 import React, { Component } from 'react';
 import logo from './../../logo.svg';
 import Modal from 'react-modal';
-import showModal from './showModal';
+import ShowModalModels from './showModalModels';
 import ShowModels from './ShowModels';
+import Header from '../Header/Header';
+import SearchModel from './SearchModel';
+import api from './../../api/Api';
+
 const customStyles = {
     content : {
       top                   : '50%',
@@ -20,13 +24,15 @@ export default class ModalModels extends Component{
         super();
     
         this.state = {
-          modalIsOpen: false
+          modalIsOpen: false,
+          urls:[],
         };
     
         this.openModal = this.openModal.bind(this);
         this.afterOpenModal = this.afterOpenModal.bind(this);
         this.closeModal = this.closeModal.bind(this);
       }
+      
     
       openModal() {
         this.setState({modalIsOpen: true});
@@ -41,6 +47,7 @@ export default class ModalModels extends Component{
       }
     
     render(){
+        const urls =  [ { url: 'https://picsum.photos/200/300'},{ url: 'https://picsum.photos/200/300'}, { url: 'https://picsum.photos/200/300'},{ url: 'https://picsum.photos/200/300'}, {url:'https://picsum.photos/200'} ]
         return(
             <div>
         <button onClick={this.openModal}>Open Modal</button>
@@ -51,7 +58,9 @@ export default class ModalModels extends Component{
           style={customStyles}
           contentLabel="Example Modal"
         >
-             <ShowModels />
+           
+            <Header title="Show Models"/>
+            <SearchModel />
           <button onClick={this.closeModal}>close</button>
         </Modal>
       </div>

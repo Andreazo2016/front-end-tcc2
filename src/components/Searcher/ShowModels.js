@@ -1,10 +1,11 @@
-import React, {Component} from 'react';
+import React  from 'react';
+import Img from 'react-image';
 
-export default class ShowModels extends Component{
-    render(){
-        return (
-            <div>
-            </div>
-        );
-    }
+const showImagens = ( props ) =>{
+    return(
+        <div>
+            <Img src={props.url} alt={props.alt} width={150} height={150} />
+        </div>
+    );
 }
+export default showImagens;
