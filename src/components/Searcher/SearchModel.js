@@ -19,7 +19,7 @@ export default class SearchModel extends Component{
       }
     
       getModels = async ( keywords ) => {
-        const data = api.get(`/assets?keywords=${keywords}&format=OBJ&key=AIzaSyBEqxqylCl-ppAEm0OVTLtNZ--1pwdcmYc`);
+        const data = api.get(`/assets?keywords=${keywords}&format=OBJ&key=`);
         return data;
       }
        handleSubmit(event) {
@@ -45,6 +45,7 @@ export default class SearchModel extends Component{
         return(
             <div >
               <div className="container-search">
+
                 <form onSubmit={this.handleSubmit}>
                     <label>
                     <input type="text" value={this.state.value} onChange={this.handleChange}  className="input-model"/>
