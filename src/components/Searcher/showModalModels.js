@@ -1,19 +1,21 @@
 import React, { Component } from 'react';
 import ShowModels from './ShowModels';
 import './ShowModalModels.css'
+
 export default class ShowModalModels extends Component{
     
-    click = (e) =>{
-        e.preventDefault();
-        console.log("Was clicked");
+   
+    handleClick = async ( element ) =>{
        
+       localStorage.setItem('myObj', element.obj);
+       localStorage.setItem('myMtl', element.mtl);
+       console.log("mtl"+element.mtl)
     }  
-    showArray = ()=>{
+    showArray = () => {
         const arraysUrl = this.props.urls;
          const arrays = arraysUrl.map( (element, i) => {
-            console.log(element.url);
             return (
-            <button key={i} onClick={this.click}>
+            <button key={i} onClick={() => { this.handleClick( element ) }}>
                       <ShowModels  url={element.url} alt={i} />
             </button>
             );
