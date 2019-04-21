@@ -7,7 +7,7 @@ export default class Searcher extends Component {
     render(){
         return(
             <div className="container-search">
-                 <ModalModels />
+                 <ModalModels nameBtn={this.props.name} show={this.props.show} title={this.props.title}/>
             </div>
         );
     }

@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
-import ShowModalModels from './showModalModels';
-import './SearchModel.css';
 import api from './../../api/Api';
+import ShowImageModal from './showImageModal';
 
-export default class SearchModel extends Component {
+export default class ImageFinder extends Component {
   constructor(props) {
     super(props);
     this.state = { value: '' };
@@ -18,25 +17,24 @@ export default class SearchModel extends Component {
   }
 
   getModels = async (keywords) => {
-    const data = api.get(`/models/${keywords}`);
+    const data = api.get(`/image/${keywords}`);
     return data;
   }
   handleSubmit(event) {
     const keywords = this.state.value;
     const promisse = this.getModels(keywords);
-
-    promisse.then(response => {
-      const { assets } = response.data;
-      const listUrl = assets.map((obj) => {
-        var format = obj.formats.find(format => { return format.formatType === 'OBJ'; });
-        var mtl = format.resources.find(resource => { return resource.url.endsWith('mtl') });
-        return { url: obj.thumbnail.url, obj: format.root.url, mtl: mtl.url };
-      });
-      this.setState({ urls: listUrl })
-    })
-      .catch(error => {
-        console.log(error);
+    promisse.then( data => {
+      const { results } = data.data;
+    const listUrls =  results.map( obj => {
+      const { urls } = obj;
+        return {url: urls.full};
       })
+      console.log(listUrls);
+      this.setState({urls:listUrls});
+    })
+    .catch( erro => {
+      console.log( erro );
+    })
 
     event.preventDefault();
   }
@@ -53,7 +51,7 @@ export default class SearchModel extends Component {
             <input type="submit" value="Submit" className="btn-submit" />
           </form>
         </div>
-        <ShowModalModels urls={this.state.urls} />
+        <ShowImageModal urls={this.state.urls} />
       </div>
     );
   }

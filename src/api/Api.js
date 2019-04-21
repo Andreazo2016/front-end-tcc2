@@ -1,3 +1,3 @@
 import Axios from 'axios';
-const api = Axios.create( {baseURL:'https://poly.googleapis.com/v1'});
+const api = Axios.create( {baseURL:'http://localhost:8080/api'});
 export default api;

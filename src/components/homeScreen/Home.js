@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import Header from './../Header/Header';
 import './Home.css';
 import Searcher from '../Searcher/Searcher';
-import { AsyncStorage } from 'AsyncStorage';
 import Show3dModel from '../3dModels/Show3dModels';
 
 export default class Home extends Component {
@@ -24,9 +23,8 @@ export default class Home extends Component {
         return(
             <div>
                 <Header title="Header Inicial" />
-                <Searcher />
-                {console.log(this.state.obj)}
-                {console.log(this.state.mtl)}
+                <Searcher name="Modelos" show={true} title="Procurar Modelos"/>
+                <Searcher name="Imagens" show={false}  title="Procurar Imagens"/>
                  <Show3dModel obj={this.state.obj} mtl={this.state.mtl}/>
             </div>
         );

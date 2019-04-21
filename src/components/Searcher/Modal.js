@@ -7,6 +7,8 @@ import Header from '../Header/Header';
 import SearchModel from './SearchModel';
 import api from './../../api/Api';
 
+import ImageFinder from './../imageSearch/imageFinder';
+
 const customStyles = {
     content : {
       top                   : '50%',
@@ -47,10 +49,9 @@ export default class ModalModels extends Component{
       }
     
     render(){
-        const urls =  [ { url: 'https://picsum.photos/200/300'},{ url: 'https://picsum.photos/200/300'}, { url: 'https://picsum.photos/200/300'},{ url: 'https://picsum.photos/200/300'}, {url:'https://picsum.photos/200'} ]
         return(
             <div>
-        <button onClick={this.openModal}>Open Modal</button>
+        <button onClick={this.openModal}>{this.props.nameBtn}</button>
         <Modal
           isOpen={this.state.modalIsOpen}
           onAfterOpen={this.afterOpenModal}
@@ -59,8 +60,10 @@ export default class ModalModels extends Component{
           contentLabel="Example Modal"
         >
            
-            <Header title="Show Models"/>
-            <SearchModel />
+            <Header title={this.props.title}/>
+           
+           { this.props.show ? (<SearchModel /> ) : (<ImageFinder />) }
+
           <button onClick={this.closeModal}>close</button>
         </Modal>
       </div>
